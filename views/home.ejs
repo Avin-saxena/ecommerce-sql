@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laundry management</title>
+    <style>
+        body {
+            background-color: #f1e6f9;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            background-image: url("C:\Users\deept\OneDrive\Desktop/123.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+    h1 {
+        font-size: 2.6em;
+        color: #333;
+        margin: 0.5em 0;
+    }
+    
+    h2 {
+        font-size: 2em;
+        color: #c1a700;
+        margin: 0.5em 0;
+    }
+    
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 2px;
+    }
+    
+    li {
+        display: block;
+        margin-right: 1em;
+        width: 40%;
+        padding: 2px;
+    }
+    
+    a {
+        display: block;
+            padding: 2em;
+            background-color: #dfc7c7;
+        color: #333;
+        text-decoration: none;
+        border: 1px solid #0f0000;
+        border-radius: 1.2em;
+        width: 60%;
+        margin-right: 10px;
+
+    }
+    
+    a:hover {
+        color: #0a4c7f;
+    }
+</style>
+</head>
+<body>
+    <h1>Welcome Avin!</h1>
+    <h2>Admin panel</h2>
+    <form action="/"method="post">
+        <div id="empContainer">  
+       <div>
+        <a href="/employee">Employee</a></div>
+        <div id="cusContainer">  
+        <div>  
+             <a href="/customer">Customer</a>
+       </div>
+
+       <div id="supContainer">  
+        <div>  
+             <a href="/supplier">Supplier</a>
+       </div>
+       <div id="depContainer">  
+        <div>  
+             <a href="/depo">Depository</a>
+       </div>
+       <div id="sbContainer">  
+        <div>  
+             <a href="/supplier_bill">Supplier Bills</a>
+       </div>
+        
+        
+    </form>
+
+    
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+    /* Style the form container */
+    #empContainer {
+      display: block;
+      left: 50px;
+     /* margin: 20px auto;*/
+      max-width: 200px;
+      font-family:cursive;
+      font: size 60px;;
+      font-weight: bolder;
+      color: aqua;
+      text-shadow: #0f0000;
+      text-align: center;
+      padding: 10px;
+      height: 200px;
+      width: 180px;
+    }
+
+
+    #cusContainer {
+    position: relative;
+    top: -108px;
+    left: 280px;
+    display: block;
+    margin: 10px auto;
+    max-width: 200px;
+    font-family:cursive;
+    font-size: medium;
+      font-weight: bolder;
+      color: aqua;
+      text-shadow: #0f0000;
+      text-align: center;
+    padding: 12px;
+    height: 200px;
+    width: 180px;
+    
+    }
+
+
+    #supContainer {
+    position: relative;
+    top: -108px;
+    left: 260px;
+    display: block;
+    margin: 10px auto;
+    max-width: 200px;
+    font-family:cursive;
+    font-size: medium;
+      font-weight: bolder;
+      color: aqua;
+      text-shadow: #0f0000;
+      text-align: center;
+    padding: 10px;
+    height: 200px;
+    width: 180px;
+    }
+
+    #depContainer {
+    position: relative;
+    top: -108px;
+    left: 246px;
+    display: block;
+    margin: 10px auto;
+    max-width: 200px;
+    font-family:cursive;
+    font-size: medium;
+      font-weight: bolder;
+      color: aqua;
+      text-shadow: #0f0000;
+      text-align: center;
+    padding: 10px;
+    height: 200px;
+    width: 180px;
+    }
+
+    #sbContainer {
+    position: relative;
+    top: -108px;
+    left: 246px;
+    display: block;
+    margin: 10px auto;
+    max-width: 200px;
+    font-family:cursive;
+    font-size: medium;
+      font-weight: bolder;
+      color: aqua;
+      text-shadow: #0f0000;
+      text-align: center;
+    padding: 10px;
+    height: 200px;
+    width: 180px;
+    }
+
+
+    
+    
+    /* Style the form labels */
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight:bolder;
+    }
+  
+    /* Style the form inputs */
+    input[type="text"],
+    input[type="number"],
+    select {
+      width: 60%;
+      padding:10px;
+      margin-bottom: 20px;
+      border-radius: 5px;
+      border: none;
+      box-shadow: 0px 0px 5px #aaa;
+    }
+  
+    /* Style the submit button */
+    input[type="submit"] {
+      background-color: #8d5c27;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+  
+    input[type="submit"]:hover {
+      background-color: #3e8e41;
+    }
+    
+
+
+  </style>
