@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>employee</title>
+    
 
 
 
@@ -18,6 +19,7 @@
         th, td {
           text-align: left;
           padding: 10px;
+          width: 20px;
           border-bottom: 1px solid #ddd;
           font-family: Tahoma, Verdana, sans-serif;
         }
@@ -55,7 +57,10 @@
     padding: 10px;
     
     }
-
+    a{
+  text-decoration: none;
+    color: black;
+}
 
     
   
@@ -93,6 +98,56 @@
       background-color: #3e8e41;
     }
     
+    .view-details {
+  background-color: #dd9f84; /* set background color */
+  color: rgb(0, 0, 0); /* set font color */
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  padding: 10px 20px; /* set button padding */
+  text-align: center; /* center button text */
+  display: inline-block; /* make button inline */
+  font-size: 14px; /* set font size */
+  margin: 4px 2px; /* set margin */
+  cursor: pointer; /* add cursor pointer */
+  border-radius: 5px; 
+}
+
+.add-contact {
+  background-color: #dd9f84; /* set background color */
+  color: rgb(0, 0, 0); /* set font color */
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  padding: 10px 20px; /* set button padding */
+  text-align: center; /* center button text */
+  display: inline-block; /* make button inline */
+  font-size: 14px; /* set font size */
+  margin: 4px 2px; /* set margin */
+  cursor: pointer; /* add cursor pointer */
+  border-radius: 5px; 
+}
+.add-salary {
+  background-color: #dd9f84; /* set background color */
+  color: rgb(0, 0, 0); /* set font color */
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  padding: 10px 20px; /* set button padding */
+  text-align: center; /* center button text */
+  display: inline-block; /* make button inline */
+  font-size: 14px; /* set font size */
+  margin: 4px 2px; /* set margin */
+  cursor: pointer; /* add cursor pointer */
+  border-radius: 5px; 
+}
+
+
+button {
+  color: rgb(54, 12, 12); /* set the text color to white */
+  background-color: rgb(100, 153, 177); /* set the background color to blue */
+  border: none; /* remove the button border */
+  padding: 10px 20px; /* add some padding to the button */
+  box-shadow: 0 0 10px rgba(206, 176, 176, 0.59);
+  
+}
+
+
+
 
 
   </style>
@@ -150,11 +205,12 @@
   </div>
 </div>
     </div>
-  
+
+    
 
 
 
-
+    
 
 
 
@@ -178,7 +234,8 @@
             <th>Age</th>
             <th>Sex</th>
             <th>View details</th>
-            <th>Add details</th>
+            <th>Add Contact No.</th>
+            <th>Add salary details</th>
           </tr>
         </thead>
         <tbody>
@@ -188,8 +245,12 @@
               <td><%= employee.name %></td>
               <td><%= employee.age %></td>
               <td><%= employee.sex %></td>
-              <td><form action="/employee-details"method="post"><button class="view-details"name= "employeeCode"value="<%= employee.employee_code %>">View Details</button></form></td>
-              <td><form action="/add-employee-details"method="post"><button class="add-details"name= "employeeCode"value="<%= employee.employee_code %>">add Details</button></form></td>
+              <td><form action="/employee-details" method="post"><button class="view-details"name= "employeeCode"value="<%= employee.employee_code %>">View Details</button></form></td>
+              <td><form action="/add-employee-details/<%=employee.employee_code%>" method="POST">
+                <input type="text" name="contact" placeholder="Contact" />
+                <button class="add-contact" type="submit">Add Contact</button>
+              </form></td>
+              <td><button class="add-salary"> <a href="/add-employee-details?employee_code=<%= employee.employee_code %>">Add/update salary</a></button></td>
             </tr>
           <% }); %>
         </tbody>

@@ -58,8 +58,8 @@
 </style>
 </head>
 <body>
-    <h1>Welcome Avin!</h1>
-    <h2>Admin panel</h2>
+    <center><h1>Welcome Avin!</h1></center>
+    <center><h2>Admin panel</h2></center>
     <form action="/"method="post">
         <div id="empContainer">  
        <div>
@@ -81,6 +81,24 @@
         <div>  
              <a href="/supplier_bill">Supplier Bills</a>
        </div>
+       <div id="billContainer">  
+        <div>  
+             <a href="/bills">Bills</a>
+       </div>
+
+       <div id="clothContainer">  
+        <div>  
+             <a href="/cloth">cloth</a>
+       </div>
+
+       <div id="service_rate_listContainer">  
+        <div>  
+             <a href="/rate_list">Rate list</a>
+       </div>
+       <div id="supplier_rate_listContainer">  
+        <div>  
+             <a href="/srate_list">Supplier rate list</a>
+       </div>
         
         
     </form>
@@ -93,19 +111,12 @@
 
 
 
-
-
-
-
-
-
-
-
 <style>
     /* Style the form container */
     #empContainer {
+      position: absolute;
       display: block;
-      left: 50px;
+      left: 360px;
      /* margin: 20px auto;*/
       max-width: 200px;
       font-family:cursive;
@@ -121,9 +132,9 @@
 
 
     #cusContainer {
-    position: relative;
-    top: -108px;
-    left: 280px;
+    position: absolute;
+    top: 120px;
+    left: 2px;
     display: block;
     margin: 10px auto;
     max-width: 200px;
@@ -142,7 +153,7 @@
 
     #supContainer {
     position: relative;
-    top: -108px;
+    top: -240px;
     left: 260px;
     display: block;
     margin: 10px auto;
@@ -160,8 +171,8 @@
 
     #depContainer {
     position: relative;
-    top: -108px;
-    left: 246px;
+    top: 22px;
+    left: -10px;
     display: block;
     margin: 10px auto;
     max-width: 200px;
@@ -178,8 +189,8 @@
 
     #sbContainer {
     position: relative;
-    top: -108px;
-    left: 246px;
+    top: 20px;
+    left: -280px;
     display: block;
     margin: 10px auto;
     max-width: 200px;
@@ -193,6 +204,80 @@
     height: 200px;
     width: 180px;
     }
+
+    #billContainer {
+      position: absolute;
+      display: block;
+      top: 0px;
+      left: 280px;
+     /* margin: 20px auto;*/
+      max-width: 200px;
+      font-family:cursive;
+      font: size 60px;;
+      font-weight: bolder;
+      color: aqua;
+      text-shadow: #0f0000;
+      text-align: center;
+      padding: 10px;
+      height: 200px;
+      width: 180px;
+    }
+
+    #clothContainer {
+      position: absolute;
+      display: block;
+      top: 120px;
+      left: -280px;
+     /* margin: 20px auto;*/
+      max-width: 200px;
+      font-family:cursive;
+      font: size 60px;;
+      font-weight: bolder;
+      color: aqua;
+      text-shadow: #0f0000;
+      text-align: center;
+      padding: 10px;
+      height: 200px;
+      width: 180px;
+    }
+    #service_rate_listContainer {
+      position: absolute;
+      display: block;
+      top: 0px;
+      left: 280px;
+     /* margin: 20px auto;*/
+      max-width: 200px;
+      font-family:cursive;
+      font: size 60px;;
+      font-weight: bolder;
+      color: aqua;
+      text-shadow: #0f0000;
+      text-align: center;
+      padding: 10px;
+      height: 200px;
+      width: 180px;
+    }
+
+    #supplier_rate_listContainer {
+      position: absolute;
+      display: block;
+      left: -140px;
+     /* margin: 20px auto;*/
+      max-width: 200px;
+      font-family:cursive;
+      font: size 60px;;
+      font-weight: bolder;
+      color: aqua;
+      text-shadow: #0f0000;
+      text-align: center;
+      padding: 10px;
+      height: 200px;
+      width: 180px;
+    }
+
+  
+
+
 
 
     
