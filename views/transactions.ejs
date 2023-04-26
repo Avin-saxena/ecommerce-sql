@@ -4,14 +4,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>employee</title>
+    <title>Depository</title>
     
 
 
 
     <style>
-  
-  
+
 
 
         table {
@@ -157,80 +156,91 @@ button {
   
 }
 
+/* Reset default styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body styles */
+body {
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+/* Header styles */
+h1 {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  font-size: 36px;
+  text-transform: uppercase;
+}
+
+/* Table styles */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 40px;
+}
+
+th, td {
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+th {
+  background-color: #49b8e3;
+  color: #fff;
+  text-align: left;
+  font-weight: bold;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tr:hover {
+  background-color: #ddd;
+}
+
+/* Responsive styles */
+@media (max-width: 767px) {
+  table {
+    font-size: 14px;
+  }
+  
+  th, td {
+    padding: 8px;
+  }
+  
+  th {
+    font-size: 16px;
+  }
+  
+  h1 {
+    font-size: 28px;
+  }
+}
 
 
 
 
   </style>
 
-
-
-
-
-<div style="display:inline-block; width: 20%;">
-<div style="display:inline-block; width: 100%; border: 2px solid black; padding: 10px;">
-
-<div id="employeeFormContainer"class="empadd">
-<h2>Enter Details</h2>
-<form method="POST" action="/addEmployee">
-  <label for="id">Employee ID:</label>
-  <input type="text" id="employee_code" name="employee_code"><br>
-
-  <label for="name">Name:</label>
-  <input type="text" id="name" name="name"><br>
-
-  <label for="age">Age:</label>
-  <input type="number" id="age" name="age"><br>
-
-  <label for="sex">Sex:</label>
-  <select id="sex" name="sex">
-    <option value="M">M</option>
-    <option value="F">F</option>
-  </select><br>
-
-  <input type="submit" value="Add Employee">
+<form action="/transactions/search" method="GET">
+  <label for="transaction_id">Search by Transaction ID:</label>
+  <input type="text" id="transaction_id" name="transaction_id">
+  <button type="submit">Search</button>
 </form>
-</div>
-</div>
-</div>
-
-<div style="display:inline-block; width: 20%;">
-
-  <div id="searchContainer">   
-<div>
-    <form method="GET" action="/searchEmployee">
-      <label for="searchName">Search by Name:</label>
-      <input type="text" id="searchName" name="searchName">
-      <button type="submit">Search</button>
-    </form>
-  </div>
-
-<h4>OR</h4>
-
-<div>
-    <form method="GET" action="/searchByCode">
-      <label for="employee_code">Search by Employee code:</label>
-      <input type="number" id="employee_code" name="employee_code">
-      <button type="submit">Search</button>
-    </form>
-  </div>
-</div>
-    </div>
-
-    
 
 
-
-    
-
-
-
-
-
-
-
-
-
+<form action="/transactions/search1" method="GET">
+  <label for="supplier_code">supplier code:</label>
+  <input type="text" id="supplier_code" name="supplier_code">
+  <button type="submit">Search</button>
+</form>
 
 
 
@@ -240,28 +250,20 @@ button {
     <table>
         <thead>
           <tr>
-            <th>Employee code</th>
-            <th>Name</th>
-            <th>Age</th>
-            <th>Sex</th>
-            <th>View details</th>
-            <th>Add Contact No.</th>
-            <th>Add salary details</th>
+            <th>supplier code</th>
+            <th>transaction id</th>
+            <th>amount</th>
+            <th>date</th>
           </tr>
         </thead>
         <tbody>
-          <% employees.forEach(function(employee) { %>
+          <% transactions.forEach(function(transactions) { %>
             <tr>
-              <td><form action="/employee"method="post"><%= employee.employee_code %></form></td>
-              <td><%= employee.name %></td>
-              <td><%= employee.age %></td>
-              <td><%= employee.sex %></td>
-              <td><form action="/employee-details" method="post"><button class="view-details"name= "employeeCode"value="<%= employee.employee_code %>">View Details</button></form></td>
-              <td><form action="/add-employee-details/<%=employee.employee_code%>" method="POST">
-                <input type="text" name="contact" placeholder="Contact" />
-                <button class="add-contact" type="submit">Add Contact</button>
-              </form></td>
-              <td><button class="add-salary"> <a href="/add-employee-details?employee_code=<%= employee.employee_code %>">Add/update salary</a></button></td>
+              <form action="/transactions"method="post"></form>
+              <td><%= transactions.supplier_code %></td>
+             <td><%= transactions.transaction_id %></td>
+              <td><%= transactions.amount %></td>
+              <td><%= transactions.date %></td>
             </tr>
           <% }); %>
         </tbody>

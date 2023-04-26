@@ -4,19 +4,22 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../particles.js-master/particles.js-master/demo/css/style.css">
     <title>Laundry management</title>
     <style>
         body {
             background-color: #f1e6f9;
             font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-            background-image: url("C:\Users\deept\OneDrive\Desktop/123.jpg");
+            background-image: url("home.png");
             background-repeat: no-repeat;
             background-size: cover;
+            background-attachment: fixed;
         }
+        
 
     h1 {
         font-size: 2.6em;
-        color: #333;
+        color: #f9b6b6;
         margin: 0.5em 0;
     }
     
@@ -42,7 +45,7 @@
     a {
         display: block;
             padding: 2em;
-            background-color: #dfc7c7;
+            background-color: #e3d7b8;
         color: #333;
         text-decoration: none;
         border: 1px solid #0f0000;
@@ -51,6 +54,16 @@
         margin-right: 10px;
 
     }
+
+  .h{
+    position:absolute;
+    top: 10px;
+    left: 10px;
+  }
+
+  .g{
+    position: relative;
+  }
     
     a:hover {
         color: #0a4c7f;
@@ -58,56 +71,62 @@
 </style>
 </head>
 <body>
-    <center><h1>Welcome Avin!</h1></center>
+  <div id="particles.js">
+
+    <center><h1>Resilient Launders!</h1></center>
     <center><h2>Admin panel</h2></center>
     <form action="/"method="post">
-        <div id="empContainer">  
-       <div>
-        <a href="/employee">Employee</a></div>
-        <div id="cusContainer">  
-        <div>  
-             <a href="/customer">Customer</a>
-       </div>
-
-       <div id="supContainer">  
-        <div>  
-             <a href="/supplier">Supplier</a>
-       </div>
-       <div id="depContainer">  
-        <div>  
-             <a href="/depo">Depository</a>
-       </div>
-       <div id="sbContainer">  
-        <div>  
-             <a href="/supplier_bill">Supplier Bills</a>
-       </div>
-       <div id="billContainer">  
-        <div>  
-             <a href="/bills">Bills</a>
-       </div>
-
-       <div id="clothContainer">  
-        <div>  
-             <a href="/cloth">cloth</a>
-       </div>
-
-       <div id="service_rate_listContainer">  
-        <div>  
-             <a href="/rate_list">Rate list</a>
-       </div>
-       <div id="supplier_rate_listContainer">  
-        <div>  
-             <a href="/srate_list">Supplier rate list</a>
-       </div>
-        
-        
-    </form>
-
-    
-</body>
-</html>
-
-
+      <div id="empContainer"  > 
+         
+        <div >
+          <a href="/employee" class="h" >Employee</a></div>
+          <div id="cusContainer">  
+            <div>  
+              <a href="/customer">Customer</a>
+            </div>
+            
+            <div id="supContainer">  
+              <div>  
+                <a href="/supplier">Supplier</a>
+              </div>
+              <div id="depContainer">  
+                <div>  
+                  <a href="/depository">Depository</a>
+                </div>
+                <div id="sbContainer">  
+                  <div>  
+                    <a href="/transactions">Supplier Bills</a>
+                  </div>
+                  <div id="billContainer">  
+                    <div>  
+             <a href="/bill">Customer Bills</a>
+            </div>
+            
+            <div id="clothContainer">  
+              <div>  
+                <a href="/cloth">cloth</a>
+              </div>
+              
+              <div id="service_rate_listContainer">  
+                <div>  
+                  <a href="/rate_list">Rate list</a>
+                </div>
+                <div id="supplier_rate_listContainer">  
+                  <div>  
+                    <a href="/supplier_rate_list">Supplier rate list</a>
+                  </div>
+                  
+                  
+                </form>
+                
+                
+              </div>
+              <script src="../particles.js-master/particles.js-master/particles.js"></script>
+          <script src="../particles.js-master/particles.js-master/demo/js/app.js"></script>
+              </body>
+              </html>
+              
+              
 
 
 

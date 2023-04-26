@@ -16,7 +16,7 @@ app.get("/", function (req, res) {
   res.render("home");
 });
 
-/**********************************employee*****************************/
+/**********************************employee*********************************/
 app.get("/employee", function (req, res) {
   var sql1 = "SELECT * FROM employee";
   db.query(sql1, (error, results, fields) => {
@@ -169,8 +169,7 @@ app.post("/addCustomer", function (req, res) {
     return;
   }
 
-  var sql3 =
-    "INSERT INTO customer(customer_code, name, previous_money_dues) VALUES (?, ?, ?, ?)";
+  var sql3 = "INSERT INTO customer(customer_code, name, previous_money_dues) VALUES (?, ?, ?, ?)";
   var cvalues = [customerCode, name, previous_money_dues];
 
   db.query(sql3, cvalues, function (err, result) {
@@ -238,19 +237,19 @@ app.post("/bills", function (req, res) {
     return;
   }
 
-  var q6 =
-    "SELECT * FROM bill INNER JOIN customer ON customer.customer_code = bill.customer_code INNER JOIN bill ON customer.customer_code = bill.customer_code WHERE customer.customer_code= ?; ";
+  var q6 = "SELECT * FROM bill INNER JOIN customer ON customer.customer_code = bill.customer_code WHERE customer.customer_code= ?; ";
+
 
   db.query(q6, [customerCode], function (err, results) {
     if (err) {
       console.log("customer not found: " + err.message);
     } else {
-      res.render("customer-details", { results });
+      res.render("bills", { results });
     }
   });
 });
 
-/***************************************************supplier******************************************************/
+/*****************************************************supplier******************************************************/
 app.get("/supplier", function (req, res) {
   var sql20 = "SELECT * FROM supplier";
   db.query(sql20, (error, results, fields) => {
@@ -310,7 +309,207 @@ app.get("/searchSupplierbycode", function (req, res) {
   );
 });
 
-/******************************************************************************************************************/
+
+app.post("/supplier-details", function (req, res) {
+  var supplierCode = parseInt(req.body.supplierCode);
+
+  if (isNaN(supplierCode)) {
+    console.log("Invalid employee data");
+    res.redirect("/supplier");
+    return;
+  }
+
+  var q1 =
+    "SELECT * FROM supplier INNER JOIN supplier_contact ON supplier.supplier_code = supplier_contact.supplier_code INNER JOIN supplier_rate_list ON supplier.supplier_code =  supplier_rate_list.supplier_code WHERE supplier.supplier_code= ?; ";
+
+  db.query(q1, [supplierCode], function (err, results) {
+    if (err) {
+      console.log("employee not found: " + err.message);
+    } else {
+      res.render("supplier-details", { results });
+    }
+  });
+});
+/*******************************************add supplier details******************************************/
+app.post("/add-supplier-details/:supplier_code", (req, res) => {
+  const { supplier_code } = req.params;
+  const { contact } = req.body;
+
+  const sql =
+    "INSERT INTO supplier_contact (supplier_code, contact_no) VALUES (?, ?)";
+  db.query(sql, [supplier_code, contact], (err, result) => {
+    if (err) throw err;
+    console.log("Contact added successfully!");
+    res.redirect("/supplier");
+  });
+});
+
+
+app.post('/addrate/:supplier_code', (req, res) => {
+  const supplier_code = req.params.supplier_code;
+  const product_name = req.body.product_name;
+  const rate = req.body.rate;
+
+  const sql = 'SELECT * FROM supplier_rate_list WHERE supplier_code = ?';
+  db.query(sql, [supplier_code], (err, result) => {
+    if (err) throw err;
+      
+      // If salary details don't exist, insert them
+      const sql14 = 'INSERT INTO supplier_rate_list(supplier_code, product_name, rate) VALUES (?, ?, ? )';
+      db.query(sql14, [supplier_code, product_name, rate], (err, result) => {
+        if (err) throw err;
+        console.log('updated supplier_rate_list!');
+        res.redirect('/add-supplier-details');
+      });
+    
+  });
+});
+
+
+app.get("/add-supplier-details", function (req, res) {
+  const supplier_code = req.query.supplier_code;
+
+  var q2 =
+    "SELECT * FROM supplier INNER JOIN supplier_contact ON supplier.supplier_code = supplier_contact.supplier_code INNER JOIN supplier_rate_list ON supplier.supplier_code = supplier_rate_list.supplier_code WHERE supplier.supplier_code= ?";
+
+  db.query(q2, [supplier_code], function (err, results) {
+    if (err) {
+      console.log("Error fetching supplier details: " + err.message);
+      res.status(500).send("Error fetching supplier details");
+    } else {
+      res.render("add-supplier-details", { results: results, supplier_code: supplier_code });
+    }
+  });
+});
+
+/***************************************************Depository*************************************************/
+
+app.get("/depository", function (req, res) {
+  var sql8 = "SELECT * FROM depository";
+  db.query(sql8, (error, results, fields) => {
+    if (error) throw error;
+    const depository = results;
+    res.render("depository", { depository: depository });
+  });
+});
+/*******************************************************supplier-bills***********************************************/
+app.get("/transactions", function (req, res) {
+  var sql9 = "SELECT * FROM transactions";
+  db.query(sql9, (error, results, fields) => {
+    if (error) throw error;
+    const transactions = results;
+    res.render("transactions", { transactions: transactions });
+  });
+});
+
+app.get("/transactions/search", function (req, res) {
+  var transactionId = req.query.transaction_id;
+  var sql = "SELECT * FROM transactions WHERE transaction_id = ?";
+  db.query(sql, [transactionId], (error, results, fields) => {
+    if (error) throw error;
+    const transactions = results;
+    res.render("transactions", { transactions: transactions });
+  });
+});
+
+
+app.get("/transactions/search1", function (req, res) {
+  var supplierCode = req.query.supplier_code;
+  var sql22 = "SELECT * FROM transactions WHERE supplier_code = ?";
+  db.query(sql22, [supplierCode], (error, results, fields) => {
+    if (error) throw error;
+    const transactions = results;
+    res.render("transactions", { transactions: transactions });
+  });
+});
+
+/********************************************************customer bills*****************************************/
+app.get("/bill", function (req, res) {
+  var sql10 = "SELECT * FROM bill";
+  db.query(sql10, (error, results, fields) => {
+    if (error) throw error;
+    const bill = results;
+    res.render("bill", { bill: bill });
+  });
+});
+
+
+app.get("/bill/search", function (req, res) {
+  var bill_code = req.query.bill_code;
+  var sql32= "SELECT * FROM bill WHERE bill_code = ?";
+  db.query(sql32, [bill_code], (error, results, fields) => {
+    if (error) throw error;
+    const bill = results;
+    res.render("bill", { bill: bill });
+  });
+});
+
+
+app.get("/bill/search1", function (req, res) {
+  var customer_code = req.query.customer_code;
+  var sql26 = "SELECT * FROM bill WHERE customer_code = ?";
+  db.query(sql26, [customer_code], (error, results, fields) => {
+    if (error) throw error;
+    const bill = results;
+    res.render("bill", { bill: bill });
+  });
+});
+
+
+
+/***********************************************************cloth***********************************************/
+app.get("/cloth", function (req, res) {
+  var sql12 = "SELECT * FROM cloth";
+  db.query(sql12, (error, results, fields) => {
+    if (error) throw error;
+    const cloth = results;
+    res.render("cloth", { cloth: cloth });
+  });
+});
+
+app.get("/cloth/search", function (req, res) {
+  var cloth_code = req.query.cloth_code;
+  var sql34= "SELECT * FROM cloth WHERE cloth_code = ?";
+  db.query(sql34, [cloth_code], (error, results, fields) => {
+    if (error) throw error;
+    const cloth = results;
+    res.render("cloth", { cloth: cloth });
+  });
+});
+
+
+app.get("/bill/search1", function (req, res) {
+  var customer_code = req.query.customer_code;
+  var sql26 = "SELECT * FROM bill WHERE customer_code = ?";
+  db.query(sql26, [customer_code], (error, results, fields) => {
+    if (error) throw error;
+    const bill = results;
+    res.render("bill", { bill: bill });
+  });
+});
+
+/*******************************************************rate_list************************************************/
+app.get("/rate_list", function (req, res) {
+  var sql14 = "SELECT * FROM rate_list";
+  db.query(sql14, (error, results, fields) => {
+    if (error) throw error;
+    const rate_list = results;
+    res.render("rate_list", { rate_list: rate_list });
+  });
+});
+
+/****************************************************supplier_rate_list************************************************/
+app.get("/supplier_rate_list", function (req, res) {
+  var sql16 = "SELECT * FROM supplier_rate_list";
+  db.query(sql16, (error, results, fields) => {
+    if (error) throw error;
+    const supplier_rate_list = results;
+    res.render("supplier_rate_list", { supplier_rate_list: supplier_rate_list });
+  });
+});
+
+
+/***********************************************************************************************************************/
 const db = mysql.createConnection({
   host: "127.0.0.1",
   user: "root",

@@ -7,15 +7,15 @@
     <title>employee details</title>
     <a href="/" class="home-button"><i class="fas fa-home"></i></a>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-    <a href=" /employee " class="previous-button">
-      <img src="/home-icon.png" alt="Previous">
+    <a href=" /supplier " class="previous-button">
+    <img src="/home-icon.png" alt="Previous">
     </a>
     
   </head>
 
   <style>
     body {
-  background-image: url('employee_details.png');
+  background-image: url('supplier.png');
   background-size: cover;
   background-attachment: fixed;
   
@@ -23,16 +23,21 @@
 
     table {
       border-collapse: collapse;
-      width: 80%;
+      width: 100%;
+      border-radius: 20px;
+      box-shadow: #333;
     }
 
     th,
     td {
       text-align: left;
       padding: 10px;
+      font-size: large;
+      color: rgb(0, 0, 0);
+      font-weight: bold;
       border-bottom: 1px solid #ddd;
-      font-family: Tahoma, Verdana, sans-serif;
-    }
+      font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
 
     th {
       background-color: #49b8e3;
@@ -40,7 +45,7 @@
     }
 
     tr:hover {
-      background-color: #f5f5f5;
+      background-color: #ef8f8f;
     }
     p {
       font-size: 40px;
@@ -73,6 +78,7 @@
     position: absolute;
     top: 110px;
     left: 120px;
+    width: 382px;
     display: block;
     margin: 0 auto;
     max-width: 500px;
@@ -82,14 +88,29 @@
     border-radius: 10px;
     box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
     }
-
-    #contact-info {
+    #rate-info {
     position: absolute;
     top: 800px;
     left: 120px;
+    width: 382px;
     display: block;
     margin: 0 auto;
     width: 360px;
+    max-width: 500px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+    
+    }
+
+    #contact-info {
+    position: absolute;
+    top: 460px;
+    left: 120px;
+    display: block;
+    margin: 0 auto;
+    width: 382px;
     max-width: 500px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     padding: 20px;
@@ -113,6 +134,10 @@
   background: linear-gradient(310deg , #d7a1aa 40%, #0dc0c3 60%);
 }
 .contact-info {
+  background: linear-gradient(310deg , #d7a1aa 40%, #0dc0c3 60%);
+}
+
+.rate-info {
   background: linear-gradient(310deg , #d7a1aa 40%, #0dc0c3 60%);
 }
 .emp{
@@ -276,18 +301,15 @@ h3{
 
 
   <body>
-    <h1>Employee details :</h1>
+    <h1>Supplier details :</h1>
     <% if (results && results.length > 0) { %>
       <div id="employee-details" class="employee-info">
-        <h2 class="emp">Employee name:  <span class="right-aligned"><%= results[0].name %></span></h2>
-        <h2 class="emp">Employee code : <span class="right-aligned"><%= results[0].employee_code %></span></h2>
-        <h2 class="emp">Age : <span class="right"> <%= results[0].age %></span> </h2>
-        <h2 class="emp">Sex : <span class="right1"> <%= results[0].sex %></span></h2>
-        <h2 class="emp1">Salary amount : <span class="right2"> <%= results[0].amount %></span></h2>
-        <h2 class="emp1">Total salary dues : <span class="right3"><%= results[0].previous_sal_due %></span></h2>
+        <h2 class="emp">Supplier name:  <span class="right-aligned"><%= results[0].name %></span></h2>
+        <h2 class="emp">Supplier code : <span class="right-aligned"><%= results[0].supplier_code %></span></h2>
+        <h2 class="emp1">Total payment dues  : <span class="right3"><%= results[0].total_dues %></span></h2>
         
       </div>
-      
+    }
       <div id="contact-info" class="contact-info">
         <h2>Contact Information:</h2>
         <ul>
@@ -295,6 +317,26 @@ h3{
             <li><%= result.contact_no %></li>
           <% }); %>
         </ul>
+      </div>
+      
+      <div id="rate-info" class="rate-info">
+        <h2>Rate list of <%= results[0].name %> :</h2>
+        <table>
+            <thead>
+              <tr>
+                <th>Item name</th>
+                <th>Rate (in Rs)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% results.forEach(function(result) { %>
+                <tr>
+                  <td><%= result.product_name %></td>
+                  <td><%= result.rate %></td>
+                </tr>
+              <% }); %>
+            </tbody>
+          </table>
       </div>
       <script>
         window.addEventListener('load', function() {
